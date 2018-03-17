@@ -1,7 +1,9 @@
 package com.example.hrle.android_portal;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-
+    public void btnStartPostsActivity(View view) {
+        Intent i = new Intent(this, PostsActivity.class);
+        startActivity(i);
+    }
 
 
 
