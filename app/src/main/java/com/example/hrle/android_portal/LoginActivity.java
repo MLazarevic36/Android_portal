@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     public void btnStartPostsActivity(View view) {
         Intent i = new Intent(this, PostsActivity.class);
         startActivity(i);
+        finish();
     }
 
 
