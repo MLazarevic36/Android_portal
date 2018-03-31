@@ -20,9 +20,19 @@
 
     </LinearLayout>
     
-    <ListView
-        android:layout_width=""
-        android:layout_height=""></ListView>
+        <ListView
+            android:id="@+id/navList"
+            android:foregroundGravity="left"
+            android:layout_width="235dp"
+            android:layout_height="match_parent"
+            android:divider="@color/colorPrimaryDark"
+            android:dividerHeight="0.5dp"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:choiceMode="singleChoice"
+            >
+
+
+        </ListView>
 
 
 
