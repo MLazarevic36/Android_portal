@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.hrle.android_portal.ReadPostActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="355dp"
+        android:layout_marginTop="84dp"
+        android:layout_x="147dp"
+        android:layout_y="130dp"
+
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="102dp"
+        android:layout_marginTop="16dp"
+        android:layout_x="183dp"
+        android:layout_y="42dp"
+        android:text="Naslov"
+        android:textAlignment="center"
+        android:textSize="40dp"
+         />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="112dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginStart="29dp"
+        android:layout_x="51dp"
+        android:layout_y="266dp"
+        android:text="Autor: "
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="215dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="163dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="162dp"
+        android:layout_x="383dp"
+        android:layout_y="268dp"
+        android:text="Datum: "
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="521dp"
+        android:layout_height="181dp"
+        android:layout_marginBottom="63dp"
+        android:layout_x="49dp"
+        android:layout_y="383dp"
+        android:text="Objava:" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="107dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginStart="66dp"
+        android:layout_x="139dp"
+        android:layout_y="637dp"
+        android:text="Likes" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="118dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="61dp"
+        android:layout_x="326dp"
+        android:layout_y="637dp"
+        android:text="Dislikes" />
+
+</AbsoluteLayout>

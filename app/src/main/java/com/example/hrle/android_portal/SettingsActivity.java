@@ -10,21 +10,21 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        getFragmentManager().beginTransaction().replace(R.id.content, new MyPreferenceFragment()).commit();
+        //setContentView(R.layout.activity_settings);
+        addPreferencesFromResource(R.xml.preferences);
 
 
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment
-    {
-        @Override
-        public void onCreate(Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preferences);
-        }
-    }
+    //public static class MyPreferenceFragment extends PreferenceFragment
+    //{
+    //    @Override
+     //   public void onCreate(Bundle savedInstanceState)
+       // {
+         //   super.onCreate(savedInstanceState);
+           // addPreferencesFromResource(R.xml.preferences);
+        //}
+    //}
 
     @Override
     protected void onStart() {
