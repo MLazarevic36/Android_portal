@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,79 +9,63 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="330dp"
-        android:layout_height="85dp"
-        android:layout_marginBottom="355dp"
-        android:layout_marginTop="84dp"
-        android:layout_x="147dp"
-        android:layout_y="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
 
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/naslov"
+        android:layout_marginTop="26dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="237dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="102dp"
-        android:layout_marginTop="16dp"
-        android:layout_x="183dp"
-        android:layout_y="42dp"
+        android:id="@+id/naslov"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
         android:text="Naslov"
         android:textAlignment="center"
         android:textSize="40dp"
          />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/autor"
         android:layout_width="112dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginStart="29dp"
-        android:layout_x="51dp"
-        android:layout_y="266dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:text="Autor: "
         android:textSize="25dp" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="215dp"
+        android:id="@+id/datum"
+        android:layout_width="wrap_content"
         android:layout_height="68dp"
-        android:layout_marginBottom="163dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="162dp"
-        android:layout_x="383dp"
-        android:layout_y="268dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/autor"
+        android:layout_marginEnd="37dp"
         android:text="Datum: "
-        android:textSize="25dp" />
+        android:textSize="20dp" />
+
+
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="521dp"
-        android:layout_height="181dp"
-        android:layout_marginBottom="63dp"
-        android:layout_x="49dp"
-        android:layout_y="383dp"
-        android:text="Objava:" />
-
-    <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/likes"
         android:layout_width="107dp"
         android:layout_height="75dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginStart="66dp"
-        android:layout_x="139dp"
-        android:layout_y="637dp"
+        android:layout_alignBottom="@+id/dislikes"
+        android:layout_marginEnd="35dp"
+        android:layout_toStartOf="@+id/dislikes"
         android:text="Likes" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/dislikes"
         android:layout_width="118dp"
         android:layout_height="76dp"
-        android:layout_marginBottom="57dp"
-        android:layout_marginEnd="61dp"
-        android:layout_x="326dp"
-        android:layout_y="637dp"
+
+        android:layout_alignEnd="@+id/datum"
+        android:layout_below="@+id/datum"
+        android:layout_marginTop="115dp"
         android:text="Dislikes" />
 
-</AbsoluteLayout>
+</RelativeLayout>
