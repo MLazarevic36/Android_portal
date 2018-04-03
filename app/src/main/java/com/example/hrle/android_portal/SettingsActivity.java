@@ -4,6 +4,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 public class SettingsActivity extends PreferenceActivity {
 
@@ -12,6 +13,9 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_settings);
         addPreferencesFromResource(R.xml.preferences);
+
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_settings, contentFrameLayout);
 
 
     }

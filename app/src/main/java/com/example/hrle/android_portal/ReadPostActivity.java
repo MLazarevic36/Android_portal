@@ -2,13 +2,15 @@ package com.example.hrle.android_portal;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
-public class ReadPostActivity extends AppCompatActivity {
+public class ReadPostActivity extends PostsActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read_post);
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_read_post, contentFrameLayout);
     }
 
     @Override
