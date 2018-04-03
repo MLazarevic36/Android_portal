@@ -12,6 +12,14 @@
         android:layout_height="match_parent">
 
 
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+
+        </ListView>
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -20,14 +28,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
 
             />
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="53dp">
-
-        </ListView>
 
 
     </FrameLayout>
@@ -43,7 +43,9 @@
 
         >
 
+
     </android.support.design.widget.NavigationView>
+
 
 
 

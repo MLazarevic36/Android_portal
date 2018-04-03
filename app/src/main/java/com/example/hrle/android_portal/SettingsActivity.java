@@ -12,23 +12,22 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_settings);
-        addPreferencesFromResource(R.xml.preferences);
 
-        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.activity_settings, contentFrameLayout);
+
+        addPreferencesFromResource(R.xml.preferences);
 
 
     }
 
-    //public static class MyPreferenceFragment extends PreferenceFragment
-    //{
-    //    @Override
-     //   public void onCreate(Bundle savedInstanceState)
-       // {
-         //   super.onCreate(savedInstanceState);
-           // addPreferencesFromResource(R.xml.preferences);
-        //}
-    //}
+    public static class MyPreferenceFragment extends PreferenceFragment
+    {
+        @Override
+        public void onCreate(Bundle savedInstanceState)
+        {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.preferences);
+        }
+    }
 
     @Override
     protected void onStart() {

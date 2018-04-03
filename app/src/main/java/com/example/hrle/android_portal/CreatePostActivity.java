@@ -16,9 +16,12 @@ public class CreatePostActivity extends PostsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_create_post);
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_create_post, contentFrameLayout);
+
+        super.replaceContentLayout(R.layout.activity_create_post, R.id.listView);
 
 
     }

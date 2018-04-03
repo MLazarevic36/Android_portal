@@ -14,14 +14,13 @@
 
         android:layout_alignParentStart="true"
         android:layout_below="@+id/naslov"
-        android:layout_marginTop="26dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/naslov"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-
+        android:layout_marginTop="60dp"
         android:text="Naslov"
         android:textAlignment="center"
         android:textSize="40dp"
@@ -33,7 +32,8 @@
         android:layout_height="70dp"
 
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="18dp"
         android:text="Autor: "
         android:textSize="25dp" />
 
@@ -43,7 +43,7 @@
         android:layout_height="68dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/autor"
-        android:layout_marginEnd="37dp"
+        android:layout_marginEnd="54dp"
         android:text="Datum: "
         android:textSize="20dp" />
 

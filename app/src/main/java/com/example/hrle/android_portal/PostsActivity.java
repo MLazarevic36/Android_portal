@@ -45,6 +45,16 @@ public class PostsActivity extends AppCompatActivity   {
         ListView listView = (ListView) findViewById(R.id.listView);
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(PostsActivity.this, ReadPostActivity.class);
+                        startActivity(intent);
+
+                    }
+                }
+        );
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -163,6 +173,17 @@ public class PostsActivity extends AppCompatActivity   {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    protected void replaceContentLayout(int sourceId, int destinationId){
+        View contentLayout = findViewById(destinationId);
+
+        ViewGroup parent = (ViewGroup) contentLayout.getParent();
+        int index = parent.indexOfChild(contentLayout);
+
+        parent.removeView(contentLayout);
+        contentLayout = getLayoutInflater().inflate(sourceId, parent, false);
+        parent.addView(contentLayout, index);
+    }
 
     class CustomAdapter extends BaseAdapter {
 
