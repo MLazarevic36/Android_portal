@@ -1,71 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hrle.android_portal.ReadPostActivity">
+    tools:context="com.example.hrle.android_portal.ReadPostActivity"
+    android:id="@+id/arp">
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-
-        android:layout_alignParentStart="true"
+        android:id="@+id/slika"
+        android:layout_width="190dp"
+        android:layout_height="141dp"
         android:layout_below="@+id/naslov"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@id/autor"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/naslov"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="Naslov"
         android:textAlignment="center"
-        android:textSize="40dp"
-         />
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/autor"
-        android:layout_width="112dp"
-        android:layout_height="70dp"
-
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="18dp"
+        android:layout_width="219dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/naslov"
         android:text="Autor: "
-        android:textSize="25dp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/datum"
-        android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_width="219dp"
+        android:layout_height="42dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/autor"
-        android:layout_marginEnd="54dp"
-        android:text="Datum: "
-        android:textSize="20dp" />
+        android:layout_below="@+id/autor"
 
+        android:textSize="10sp" />
 
+    <TextView
+        android:id="@+id/lokacija"
+        android:layout_width="219dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/datum"
+        android:layout_alignParentEnd="true"
+
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/likes"
-        android:layout_width="107dp"
-        android:layout_height="75dp"
-        android:layout_alignBottom="@+id/dislikes"
-        android:layout_marginEnd="35dp"
-        android:layout_toStartOf="@+id/dislikes"
-        android:text="Likes" />
+        android:layout_width="68dp"
+        android:layout_height="33dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/opis"
+        android:drawableLeft="@drawable/ic_like"
+
+         />
 
     <TextView
         android:id="@+id/dislikes"
-        android:layout_width="118dp"
-        android:layout_height="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/likes"
+        android:layout_below="@id/opis"
+        android:drawableLeft="@drawable/ic_dislike"
 
-        android:layout_alignEnd="@+id/datum"
-        android:layout_below="@+id/datum"
-        android:layout_marginTop="115dp"
-        android:text="Dislikes" />
+
+
+        />
+
+    <TextView
+        android:id="@+id/opis"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/slika"
+
+        android:background="@drawable/border"
+        />
+
+
+
+    <ListView
+        android:id="@+id/lv_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/likes"
+         />
+
 
 </RelativeLayout>
+

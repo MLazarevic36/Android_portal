@@ -7,8 +7,29 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.hrle.android_portal.Adapters.PostAdapter;
+import com.example.hrle.android_portal.DAO.DateUtil;
+import com.example.hrle.android_portal.DAO.PostObject;
+import com.example.hrle.android_portal.model.Comment;
+import com.example.hrle.android_portal.model.Post;
 
 public class ReadPostActivity extends PostsActivity {
+
+    private TextView title;
+    private TextView author;
+    private TextView date;
+    private TextView location;
+    private TextView likes;
+    private TextView dislikes;
+    private TextView description;
+    private ListView listViewComments;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +40,11 @@ public class ReadPostActivity extends PostsActivity {
         getLayoutInflater().inflate(R.layout.activity_read_post, contentFrameLayout);
 
         super.replaceContentLayout(R.layout.activity_read_post, R.id.listView);
+
+        PostObject.getInstance().getPostById(0);
+
+        initView();
+        populateView();
 
     }
 
@@ -67,4 +93,33 @@ public class ReadPostActivity extends PostsActivity {
         //return super.onOptionsItemSelected(item);
     //}
 
+
+    private void initView(){
+        title = findViewById(R.id.naslov);
+        author = findViewById(R.id.autor);
+        date = findViewById(R.id.datum);
+        location = findViewById(R.id.lokacija);
+        likes = findViewById(R.id.likes);
+        dislikes = findViewById(R.id.dislikes);
+        description = findViewById(R.id.opis);
+        listViewComments = findViewById(R.id.lv_comments);
+    }
+
+    private void populateView(){
+        Post post = PostObject.getInstance().getPostById(0);
+        title.setText(String.format("%s %s", title.getText(), post.getTitle()));
+        author.setText(String.format("%s %s", author.getText(), post.getAuthor().getName()));
+        date.setText(DateUtil.convertDateToString(post.getDate()));
+        location.setText(post.getLocation().toString());
+        likes.setText(""+post.getLikes());
+        dislikes.setText(""+post.getDislikes());
+        description.setText(post.getDescription());
+
+        Comment[] comments = new Comment[2];
+        comments[0] = post.getComments().get(0);
+        comments[1] = post.getComments().get(1);
+        PostAdapter postAdapter = new PostAdapter(this, comments);
+
+        listViewComments.setAdapter(postAdapter);
+    }
 }

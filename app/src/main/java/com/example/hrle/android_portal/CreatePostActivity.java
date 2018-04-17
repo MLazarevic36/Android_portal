@@ -23,7 +23,6 @@ public class CreatePostActivity extends PostsActivity {
 
         super.replaceContentLayout(R.layout.activity_create_post, R.id.listView);
 
-
     }
 
     @Override
