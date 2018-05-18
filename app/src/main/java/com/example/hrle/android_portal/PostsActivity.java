@@ -1,8 +1,7 @@
 package com.example.hrle.android_portal;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,17 +9,41 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.hrle.android_portal.Adapters.PostListViewAdapter;
+import com.example.hrle.android_portal.DAO.RestAPI;
+import com.example.hrle.android_portal.DAO.RetroClient;
+import com.example.hrle.android_portal.model.Post;
+import com.example.hrle.android_portal.model.PostsList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class PostsActivity extends AppCompatActivity   {
@@ -28,12 +51,18 @@ public class PostsActivity extends AppCompatActivity   {
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+    ListView listView;
+    private List<Post> postsList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private PostListViewAdapter pAdapter;
 
-    int[] IMAGES = {R.drawable.ic_account, R.drawable.ic_account_circle_white_24dp};
 
-    String[] NASLOV = {"Nova vest", "Druga vest"};
 
-    String[] OPIS = {"clickbait", "niscese"};
+
+    //List<Post> posts = new ArrayList<Post>();
+
+    //String[] titles = new String[posts.size()];
+
 
 
 
@@ -42,19 +71,49 @@ public class PostsActivity extends AppCompatActivity   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posts);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
-        CustomAdapter customAdapter = new CustomAdapter();
-        listView.setAdapter(customAdapter);
-        listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent = new Intent(PostsActivity.this, ReadPostActivity.class);
-                        startActivity(intent);
+        RestAPI rest_api = RetroClient.getRestAPI();
 
-                    }
+        Call<List<Post>> call = rest_api.getPosts();
+
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+
+                if( response.isSuccessful()) {
+
+                    postsList.addAll(response.body());
+                    //postsList = response.body().addAll();
+                    recyclerView = findViewById(R.id.recycler_view);
+                    pAdapter = new PostListViewAdapter(postsList);
+                    pAdapter.notifyDataSetChanged();
+                    RecyclerView.LayoutManager pLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    recyclerView.setLayoutManager(pLayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setAdapter(pAdapter);
+
                 }
-        );
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //listView = (ListView) findViewById(R.id.listView);
+        //PostListViewAdapter customAdapter = new PostListViewAdapter();
+        //listView.setAdapter(customAdapter);
+        //listView.setOnItemClickListener(
+//                new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        Intent intent = new Intent(listView.getContext(), ReadPostActivity.class);
+//                        startActivityForResult(intent, 0);
+//
+//                    }
+//                }
+//        );
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -77,9 +136,17 @@ public class PostsActivity extends AppCompatActivity   {
                                 Intent i = new Intent(PostsActivity.this, PostsActivity.class);
                                 startActivity(i);
                                 break;
+                            case R.id.create_post:
+                                Intent inte = new Intent(PostsActivity.this, CreatePostActivity.class);
+                                startActivity(inte);
+                                break;
                             case R.id.settings:
                                 Intent in = new Intent(PostsActivity.this, SettingsActivity.class);
                                 startActivity(in);
+                                break;
+                            case R.id.logout:
+                                Intent inten = new Intent(PostsActivity.this, LoginActivity.class);
+                                startActivity(inten);
                                 break;
                         }
 
@@ -185,39 +252,7 @@ public class PostsActivity extends AppCompatActivity   {
         parent.addView(contentLayout, index);
     }
 
-    class CustomAdapter extends BaseAdapter {
 
-        @Override
-        public int getCount() {
-            return IMAGES.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.custom_row,null);
-            ImageView imageView = view.findViewById(R.id.imageView2);
-            TextView textView = view.findViewById(R.id.textView);
-            TextView textView1 = view.findViewById(R.id.textView10);
-
-
-            imageView.setImageResource(IMAGES[i]);
-            textView.setText(NASLOV[i]);
-            textView1.setText(OPIS[i]);
-
-            return view;
-
-        }
-    }
 
 
 

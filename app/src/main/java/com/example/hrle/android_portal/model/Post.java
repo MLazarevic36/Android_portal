@@ -3,6 +3,8 @@ package com.example.hrle.android_portal.model;
 import android.graphics.Bitmap;
 import android.location.Location;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,22 +13,52 @@ import java.util.List;
  */
 
 public class Post {
-    private int id;
-    private String title;
-    private String description;
-    private Bitmap photo;
-    private User author;
-    private Date date;
-    private Location location;
-    private List<Tag> tags;
-    private List<Comment> comments;
-    private int likes;
 
-    public int getId() {
+    @SerializedName("id")
+    private String id;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("description")
+    private String description;
+    @SerializedName("photo")
+    private String photo;
+    @SerializedName("user")
+    private String author;
+    @SerializedName("date")
+    private String date;
+    @SerializedName("location")
+    private String location;
+    @SerializedName("tags")
+    private String tags;
+    @SerializedName("likes")
+    private String likes;
+    @SerializedName("dislikes")
+    private String dislikes;
+
+    //private List<Comment> comments;
+
+    public Post() {
+
+    }
+
+    public Post(String id, String title, String description, String photo, String author, String date, String location, String tags, String likes, String dislikes) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.photo = photo;
+        this.author = author;
+        this.date = date;
+        this.location = location;
+        this.tags = tags;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,69 +78,69 @@ public class Post {
         this.description = description;
     }
 
-    public Bitmap getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Bitmap photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public List<Tag> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+   // public List<Comment> getComments() {
+     //   return comments;
+   // }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+   // public void setComments(List<Comment> comments) {
+       // this.comments = comments;
+   // }
 
-    public int getLikes() {
+    public String getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(String likes) {
         this.likes = likes;
     }
 
-    public int getDislikes() {
+    public String getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(int dislikes) {
+    public void setDislikes(String dislikes) {
         this.dislikes = dislikes;
     }
 
-    private int dislikes;
+
 }

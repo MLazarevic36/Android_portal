@@ -2,6 +2,8 @@ package com.example.hrle.android_portal.model;
 
 import android.graphics.Bitmap;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -10,19 +12,34 @@ import java.util.List;
 
 public class User {
 
-    private int id;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("name")
     private String name;
-    private Bitmap photo;
+    @SerializedName("photo")
+    private String photo;
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
-    private List<Post> posts;
-    private List<Comment> comments;
 
-    public int getId() {
+    public User() {
+
+    }
+
+    public User(String id, String name, String photo, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,11 +51,11 @@ public class User {
         this.name = name;
     }
 
-    public Bitmap getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Bitmap photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -58,19 +75,7 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

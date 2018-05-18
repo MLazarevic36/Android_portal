@@ -5,11 +5,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toolbar;
 
 
 public class CreatePostActivity extends PostsActivity {
+
 
 
 
@@ -21,7 +26,9 @@ public class CreatePostActivity extends PostsActivity {
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_create_post, contentFrameLayout);
 
-        super.replaceContentLayout(R.layout.activity_create_post, R.id.listView);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        super.replaceContentLayout(R.layout.activity_create_post, R.id.recycler_view);
 
     }
 
@@ -56,5 +63,15 @@ public class CreatePostActivity extends PostsActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.create_post_toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
 
 }

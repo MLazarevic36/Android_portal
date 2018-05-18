@@ -12,13 +12,13 @@
         android:layout_height="match_parent">
 
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp">
+        <!--<ListView-->
+            <!--android:id="@+id/listView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="50dp">-->
 
-        </ListView>
+        <!--</ListView>-->
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -28,6 +28,13 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
 
             />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:scrollbars="vertical" />
 
 
     </FrameLayout>
