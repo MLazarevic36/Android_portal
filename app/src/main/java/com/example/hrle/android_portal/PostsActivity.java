@@ -46,7 +46,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class PostsActivity extends AppCompatActivity   {
+public class PostsActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -92,6 +92,8 @@ public class PostsActivity extends AppCompatActivity   {
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setAdapter(pAdapter);
 
+
+
                 }
             }
 
@@ -114,6 +116,8 @@ public class PostsActivity extends AppCompatActivity   {
 //                    }
 //                }
 //        );
+
+
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -139,6 +143,10 @@ public class PostsActivity extends AppCompatActivity   {
                             case R.id.create_post:
                                 Intent inte = new Intent(PostsActivity.this, CreatePostActivity.class);
                                 startActivity(inte);
+                                break;
+                            case R.id.read_post:
+                                Intent intent = new Intent(PostsActivity.this, ReadPostActivityTabbed.class);
+                                startActivity(intent);
                                 break;
                             case R.id.settings:
                                 Intent in = new Intent(PostsActivity.this, SettingsActivity.class);
@@ -251,6 +259,8 @@ public class PostsActivity extends AppCompatActivity   {
         contentLayout = getLayoutInflater().inflate(sourceId, parent, false);
         parent.addView(contentLayout, index);
     }
+
+
 
 
 

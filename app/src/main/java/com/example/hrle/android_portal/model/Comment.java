@@ -1,5 +1,7 @@
 package com.example.hrle.android_portal.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -8,20 +10,42 @@ import java.util.Date;
 
 public class Comment {
 
-    private int id;
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("title")
     private String title;
+    @SerializedName("description")
     private String description;
-    private User author;
+    @SerializedName("user")
+    private User user;
+    @SerializedName("date")
     private Date date;
     private Post post;
-    private int likes;
-    private int dislikes;
+    @SerializedName("likes")
+    private Integer likes;
+    @SerializedName("dislikes")
+    private Integer dislikes;
 
-    public int getId() {
+    public Comment() {
+
+    }
+
+    public Comment(Integer id, String title, String description, User user, Date date, Post post, Integer likes, Integer dislikes) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.date = date;
+        this.post = post;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,12 +65,12 @@ public class Comment {
         this.description = description;
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {
@@ -65,19 +89,19 @@ public class Comment {
         this.post = post;
     }
 
-    public int getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(Integer likes) {
         this.likes = likes;
     }
 
-    public int getDislikes() {
+    public Integer getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(int dislikes) {
+    public void setDislikes(Integer dislikes) {
         this.dislikes = dislikes;
     }
 }

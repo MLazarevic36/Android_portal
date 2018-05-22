@@ -13,7 +13,7 @@ import java.util.List;
 public class User {
 
     @SerializedName("id")
-    private String id;
+    private Integer id;
     @SerializedName("name")
     private String name;
     @SerializedName("photo")
@@ -27,7 +27,7 @@ public class User {
 
     }
 
-    public User(String id, String name, String photo, String username, String password) {
+    public User(Integer id, String name, String photo, String username, String password) {
         this.id = id;
         this.name = name;
         this.photo = photo;
@@ -35,11 +35,11 @@ public class User {
         this.password = password;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,7 +75,8 @@ public class User {
         this.password = password;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

@@ -11,6 +11,14 @@
             android:icon="@drawable/ic_add_post"
             android:title="Create post"
             />
+
+        <item
+            android:id="@+id/read_post"
+            android:icon="@drawable/ic_add_post"
+            android:title="Read post"
+            />
+
+
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"

@@ -9,7 +9,18 @@
     android:id="@+id/arp">
 
 
-    <ImageView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_rp"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+        />
+
+
+
+    <TextView
         android:id="@+id/slika"
         android:layout_width="190dp"
         android:layout_height="141dp"

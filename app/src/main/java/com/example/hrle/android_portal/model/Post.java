@@ -5,17 +5,20 @@ import android.location.Location;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by HrLe on 3/31/2018.
  */
 
-public class Post {
+public class Post implements Serializable {
 
     @SerializedName("id")
-    private String id;
+    private Integer id;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
@@ -23,7 +26,7 @@ public class Post {
     @SerializedName("photo")
     private String photo;
     @SerializedName("user")
-    private String author;
+    private User user;
     @SerializedName("date")
     private String date;
     @SerializedName("location")
@@ -31,9 +34,11 @@ public class Post {
     @SerializedName("tags")
     private String tags;
     @SerializedName("likes")
-    private String likes;
+    private Integer likes;
     @SerializedName("dislikes")
-    private String dislikes;
+    private Integer dislikes;
+    @SerializedName("comments")
+    public Set<Comment> comments = new HashSet<Comment>();
 
     //private List<Comment> comments;
 
@@ -41,12 +46,12 @@ public class Post {
 
     }
 
-    public Post(String id, String title, String description, String photo, String author, String date, String location, String tags, String likes, String dislikes) {
+    public Post(Integer id, String title, String description, String photo, User user, String date, String location, String tags, Integer likes, Integer dislikes) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.photo = photo;
-        this.author = author;
+        this.user = user;
         this.date = date;
         this.location = location;
         this.tags = tags;
@@ -54,11 +59,11 @@ public class Post {
         this.dislikes = dislikes;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,12 +91,12 @@ public class Post {
         this.photo = photo;
     }
 
-    public String getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDate() {
@@ -118,29 +123,27 @@ public class Post {
         this.tags = tags;
     }
 
-   // public List<Comment> getComments() {
-     //   return comments;
-   // }
-
-   // public void setComments(List<Comment> comments) {
-       // this.comments = comments;
-   // }
-
-    public String getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(Integer likes) {
         this.likes = likes;
     }
 
-    public String getDislikes() {
+    public Integer getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(String dislikes) {
+    public void setDislikes(Integer dislikes) {
         this.dislikes = dislikes;
     }
 
+    public Set<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 }
