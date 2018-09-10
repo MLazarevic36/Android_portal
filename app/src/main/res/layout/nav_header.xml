@@ -11,14 +11,15 @@
      >
 
     <ImageView
+        android:id="@+id/avatar"
         android:layout_width="373dp"
         android:layout_height="89dp"
         android:src="@drawable/ic_account_circle_white_24dp" />
 
     <TextView
+        android:id="@+id/username_ulogovanog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 

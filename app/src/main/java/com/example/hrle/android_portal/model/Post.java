@@ -3,6 +3,7 @@ package com.example.hrle.android_portal.model;
 import android.graphics.Bitmap;
 import android.location.Location;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -18,26 +19,37 @@ import java.util.Set;
 public class Post implements Serializable {
 
     @SerializedName("id")
+    @Expose
     private Integer id;
     @SerializedName("title")
+    @Expose
     private String title;
     @SerializedName("description")
+    @Expose
     private String description;
     @SerializedName("photo")
+    @Expose
     private String photo;
     @SerializedName("user")
+    @Expose
     private User user;
     @SerializedName("date")
+    @Expose
     private String date;
     @SerializedName("location")
+    @Expose
     private String location;
     @SerializedName("tags")
+    @Expose
     private String tags;
     @SerializedName("likes")
-    private Integer likes;
+    @Expose
+    private int likes;
     @SerializedName("dislikes")
-    private Integer dislikes;
+    @Expose
+    private int dislikes;
     @SerializedName("comments")
+    @Expose
     public Set<Comment> comments = new HashSet<Comment>();
 
     //private List<Comment> comments;
@@ -46,8 +58,8 @@ public class Post implements Serializable {
 
     }
 
-    public Post(Integer id, String title, String description, String photo, User user, String date, String location, String tags, Integer likes, Integer dislikes) {
-        this.id = id;
+    public Post(String title, String description, String photo, User user, String date, String location, String tags, int likes, int dislikes) {
+
         this.title = title;
         this.description = description;
         this.photo = photo;
@@ -123,19 +135,19 @@ public class Post implements Serializable {
         this.tags = tags;
     }
 
-    public Integer getLikes() {
+    public int getLikes() {
         return likes;
     }
 
-    public void setLikes(Integer likes) {
+    public void setLikes(int likes) {
         this.likes = likes;
     }
 
-    public Integer getDislikes() {
+    public int getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(Integer dislikes) {
+    public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
     }
 

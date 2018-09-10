@@ -2,37 +2,43 @@ package com.example.hrle.android_portal.model;
 
 import android.graphics.Bitmap;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by HrLe on 3/31/2018.
  */
 
-public class User {
+public class User implements Serializable {
 
     @SerializedName("id")
+    @Expose
     private Integer id;
     @SerializedName("name")
+    @Expose
     private String name;
     @SerializedName("photo")
+    @Expose
     private String photo;
     @SerializedName("username")
-    private String username;
+    @Expose
+    public String username;
     @SerializedName("password")
-    private String password;
+    @Expose
+    public String password;
+
+
 
     public User() {
 
     }
 
-    public User(Integer id, String name, String photo, String username, String password) {
+    public User(Integer id) {
         this.id = id;
-        this.name = name;
-        this.photo = photo;
-        this.username = username;
-        this.password = password;
+
     }
 
     public Integer getId() {

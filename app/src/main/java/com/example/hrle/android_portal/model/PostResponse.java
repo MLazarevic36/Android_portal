@@ -1,57 +1,39 @@
 package com.example.hrle.android_portal.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import java.time.Instant;
+import java.util.List;
 
-import java.io.Serializable;
-import java.util.Date;
+public class PostResponse {
 
-/**
- * Created by HrLe on 3/31/2018.
- */
-
-
-public class Comment {
-
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("title")
-    @Expose
+    private Long id;
     private String title;
-    @SerializedName("desc")
-    @Expose
     private String desc;
-    @SerializedName("createdBy")
-    @Expose
     private CreatedBy createdBy;
-    @SerializedName("creationDateTime")
-    @Expose
-    private CreationDateTime creationDateTime;
-    @SerializedName("likes")
-    @Expose
+    private Instant creationDateTime;
+    private String photo;
+    private String tags;
     private Integer likes;
-    @SerializedName("dislikes")
     private Integer dislikes;
+    private List<CommentResponse> comments;
 
-    public Comment() {
-
-    }
-
-    public Comment(Integer id, String title, String desc, CreatedBy createdBy, CreationDateTime creationDateTime, Integer likes, Integer dislikes) {
+    public PostResponse(Long id, String title, String desc, CreatedBy createdBy, Instant creationDateTime, String photo, String tags, Integer likes, Integer dislikes, List<CommentResponse> comments) {
         this.id = id;
         this.title = title;
         this.desc = desc;
         this.createdBy = createdBy;
         this.creationDateTime = creationDateTime;
+        this.photo = photo;
+        this.tags = tags;
         this.likes = likes;
         this.dislikes = dislikes;
+        this.comments = comments;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -79,12 +61,28 @@ public class Comment {
         this.createdBy = createdBy;
     }
 
-    public CreationDateTime getCreationDateTime() {
+    public Instant getCreationDateTime() {
         return creationDateTime;
     }
 
-    public void setCreationDateTime(CreationDateTime creationDateTime) {
+    public void setCreationDateTime(Instant creationDateTime) {
         this.creationDateTime = creationDateTime;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public Integer getLikes() {
@@ -101,5 +99,13 @@ public class Comment {
 
     public void setDislikes(Integer dislikes) {
         this.dislikes = dislikes;
+    }
+
+    public List<CommentResponse> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentResponse> comments) {
+        this.comments = comments;
     }
 }

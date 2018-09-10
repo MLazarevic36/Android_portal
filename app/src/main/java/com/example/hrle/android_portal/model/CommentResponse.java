@@ -1,43 +1,19 @@
 package com.example.hrle.android_portal.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import java.time.Instant;
 
-import java.io.Serializable;
-import java.util.Date;
-
-/**
- * Created by HrLe on 3/31/2018.
- */
+public class CommentResponse {
 
 
-public class Comment {
-
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("title")
-    @Expose
+    private Long id;
     private String title;
-    @SerializedName("desc")
-    @Expose
     private String desc;
-    @SerializedName("createdBy")
-    @Expose
     private CreatedBy createdBy;
-    @SerializedName("creationDateTime")
-    @Expose
-    private CreationDateTime creationDateTime;
-    @SerializedName("likes")
-    @Expose
+    private Instant creationDateTime;
     private Integer likes;
-    @SerializedName("dislikes")
     private Integer dislikes;
 
-    public Comment() {
-
-    }
-
-    public Comment(Integer id, String title, String desc, CreatedBy createdBy, CreationDateTime creationDateTime, Integer likes, Integer dislikes) {
+    public CommentResponse(Long id, String title, String desc, CreatedBy createdBy, Instant creationDateTime, Integer likes, Integer dislikes) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -47,11 +23,11 @@ public class Comment {
         this.dislikes = dislikes;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -79,11 +55,11 @@ public class Comment {
         this.createdBy = createdBy;
     }
 
-    public CreationDateTime getCreationDateTime() {
+    public Instant getCreationDateTime() {
         return creationDateTime;
     }
 
-    public void setCreationDateTime(CreationDateTime creationDateTime) {
+    public void setCreationDateTime(Instant creationDateTime) {
         this.creationDateTime = creationDateTime;
     }
 

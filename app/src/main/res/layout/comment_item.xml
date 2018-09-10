@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/posts_background">
+
     <TextView
         android:id="@+id/comment_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/border"
         />
     <TextView
         android:id="@+id/comment_description"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/comment_title"
+        android:background="@drawable/border"
+        />
+    <TextView
+        android:id="@+id/comment_autor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@id/comment_title"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/comment_description"
+        android:background="@drawable/border"
+        android:layout_toEndOf="@id/comment_title"
         />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/comment_like"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/comment_autor"
+        android:drawableStart="@drawable/ic_like"
+        android:layout_toEndOf="@id/comment_description"
+        />
+
+    <TextView
+        android:id="@+id/comment_dislike"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/comment_autor"
+        android:drawableStart="@drawable/ic_dislike"
+        android:layout_toEndOf="@id/comment_like"
+
+        />
+
+</RelativeLayout>

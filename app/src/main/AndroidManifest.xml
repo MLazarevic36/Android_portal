@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hrle.android_portal">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.hrle.android_portal"
+    tools:ignore="ExtraText">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    ﻿
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:name="android.support.multidex.MultiDexApplication"
+        >
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +29,7 @@
             android:label="@string/posts_activity" />
         <activity
             android:name=".CreatePostActivity"
-            android:label="@string/create_post_activity"
-            />
-        <activity
-            android:name=".ReadPostActivity"
-            android:label="@string/read_posts_activity"/>
-
+            android:label="@string/create_post_activity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings"
@@ -38,12 +38,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PostsActivity" />
         </activity>
-        <activity
-            android:name=".ReadPostActivityTabbed"
-            android:label="@string/title_activity_read_post_tabbed"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ReadPostActivity"></activity>
     </application>
 
 </manifest>

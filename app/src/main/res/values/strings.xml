@@ -16,4 +16,13 @@
     <string name="title_activity_read_post_tabbed">ReadPostActivityTabbed</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="autor">Autor: </string>
+    <string name="datum">Datum: </string>
+    <string name="lokacija">Lokacija: </string>
+
+    <string-array name="sortiranje">
+        <item>Po datumu objave</item>
+        <item>Po popularnosti</item>
+    </string-array>
+
 </resources>

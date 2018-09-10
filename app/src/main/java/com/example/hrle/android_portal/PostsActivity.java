@@ -1,7 +1,11 @@
 package com.example.hrle.android_portal;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,12 +32,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hrle.android_portal.Adapters.PostListViewAdapter;
+import com.example.hrle.android_portal.DAO.Constants;
 import com.example.hrle.android_portal.DAO.RestAPI;
 import com.example.hrle.android_portal.DAO.RetroClient;
+import com.example.hrle.android_portal.DAO.RetroClientZaRead;
+import com.example.hrle.android_portal.Fragments.ReadPostFragment;
+import com.example.hrle.android_portal.model.Content;
+import com.example.hrle.android_portal.model.Example;
 import com.example.hrle.android_portal.model.Post;
+import com.example.hrle.android_portal.model.PostResponse;
 import com.example.hrle.android_portal.model.PostsList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,22 +57,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class PostsActivity extends AppCompatActivity  {
+public class PostsActivity extends AppCompatActivity implements PostListViewAdapter.PostClickListener  {
 
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
-    ListView listView;
-    private List<Post> postsList = new ArrayList<>();
+    private List<Content> postsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private PostListViewAdapter pAdapter;
+    private ImageView avatar;
+    private TextView ulogovaniUser;
+    SharedPreferences mSettings;
+    private String username_iz_pref;
+    private String photo_iz_pref;
+    private int id_iz_pref;
+    private String accessTokenizPref;
+    private String tipTokenaIzPref;
+    private String tokenCeli;
 
-
-
-
-    //List<Post> posts = new ArrayList<Post>();
-
-    //String[] titles = new String[posts.size()];
 
 
 
@@ -70,52 +83,60 @@ public class PostsActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posts);
+        configViews();
 
-        RestAPI rest_api = RetroClient.getRestAPI();
+        mSettings = PreferenceManager.getDefaultSharedPreferences(PostsActivity.this);
 
-        Call<List<Post>> call = rest_api.getPosts();
+        accessTokenizPref = mSettings.getString("accessToken", "");
+        tipTokenaIzPref = mSettings.getString("tokenType", "");
 
-        call.enqueue(new Callback<List<Post>>() {
+        tokenCeli = tipTokenaIzPref + " " + accessTokenizPref;
+
+
+        Log.d(tokenCeli , "evo ga ceo token");
+
+
+
+        RestAPI rest_api = RetroClientZaRead.getRestAPI();
+        Call<Example> call = rest_api.getPosts(tokenCeli);
+
+
+        call.enqueue(new Callback<Example>() {
             @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            public void onResponse(Call<Example>  call, Response<Example> response) {
 
                 if( response.isSuccessful()) {
+                    postsList.clear();
 
-                    postsList.addAll(response.body());
-                    //postsList = response.body().addAll();
-                    recyclerView = findViewById(R.id.recycler_view);
-                    pAdapter = new PostListViewAdapter(postsList);
-                    pAdapter.notifyDataSetChanged();
-                    RecyclerView.LayoutManager pLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    recyclerView.setLayoutManager(pLayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setAdapter(pAdapter);
 
+
+
+                    postsList = response.body().getContent();
+
+
+
+
+                    for(int i = 0; i < postsList.size(); i++) {
+                        Content content = postsList.get(i);
+                        pAdapter.addPost(content);
+                    }
 
 
                 }
+                else {
+                    int sc = response.code();
+                    switch (sc) {
+
+                    }
+                }
+
             }
 
             @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
+            public void onFailure(Call<Example> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        //listView = (ListView) findViewById(R.id.listView);
-        //PostListViewAdapter customAdapter = new PostListViewAdapter();
-        //listView.setAdapter(customAdapter);
-        //listView.setOnItemClickListener(
-//                new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Intent intent = new Intent(listView.getContext(), ReadPostActivity.class);
-//                        startActivityForResult(intent, 0);
-//
-//                    }
-//                }
-//        );
 
 
 
@@ -143,10 +164,6 @@ public class PostsActivity extends AppCompatActivity  {
                             case R.id.create_post:
                                 Intent inte = new Intent(PostsActivity.this, CreatePostActivity.class);
                                 startActivity(inte);
-                                break;
-                            case R.id.read_post:
-                                Intent intent = new Intent(PostsActivity.this, ReadPostActivityTabbed.class);
-                                startActivity(intent);
                                 break;
                             case R.id.settings:
                                 Intent in = new Intent(PostsActivity.this, SettingsActivity.class);
@@ -260,6 +277,29 @@ public class PostsActivity extends AppCompatActivity  {
         parent.addView(contentLayout, index);
     }
 
+    @Override
+    public void onClick(int position) {
+        Content selectedPost = pAdapter.getSelectedPost(position);
+        Intent intent = new Intent(PostsActivity.this, ReadPostActivity.class);
+        intent.putExtra("id", selectedPost.getId());
+        startActivity(intent);
+
+
+    }
+
+
+
+    private void configViews() {
+        recyclerView = this.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
+        pAdapter = new PostListViewAdapter(this);
+        RecyclerView.LayoutManager pLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(pLayoutManager);
+
+
+        recyclerView.setAdapter(pAdapter);
+    }
 
 
 

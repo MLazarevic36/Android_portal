@@ -5,10 +5,12 @@
     <PreferenceCategory
         android:title="Settings">
 
-        <CheckBoxPreference
-            android:key="checkBoxPref"
-            android:title=""
-            android:summary="click this little box"/>
+        <ListPreference
+            android:key="@string/datum"
+            android:title="Sortiranje objava"
+            android:entries="@array/sortiranje"
+            android:entryValues="@array/sortiranje"
+        />
 
     </PreferenceCategory>
 
